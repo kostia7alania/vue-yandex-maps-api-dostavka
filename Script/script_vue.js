@@ -1,137 +1,96 @@
 Vue.component('v-select', VueSelect.VueSelect)
-   
-
+    
 var v = new Vue({
-    template: `<div> 
+    template: `
+<div> 
         
 
-<p class="bold"> Выберите транспорт !{{sex}}</p>  
-<select v-model="selected">
-  <option selected value="1">BMW 5 SERIES</option>
-  <option value="2">Mercedes-Benz Viano</option>
-  <option value="3">Hyundai County</option>
-</select>
-  
-  <br>
-  <div v-if='selected==1'>
-    
-  <p class="bold">Количество пассажиров:</p>
-  <div @click="passagersHandler" class="btn-group btn-group-md">
-       <button v-if="pas.value<5"  v-for="pas in pasdata" type="button" 
-          :class="{'btn-primary': pas.value==passagers}" 
-          class="btn btn-default" 
-          :value="pas.value">{{pas.text}}
-      </button>  
-  </div> 
-    <br>  
-   <div class="row">
-     <div class="col-6"> 
-      <b class="bold">Телефон</b>
-    <input class="form-control" type="tel" value="+79685555555"> 
-      </div>  
+<p class="bold"> Выберите транспорт</p>  
+
+<div>
+  <select @change="selectCarHandler" v-model="selected">
+    <option v-for="sld in slider" :value="sld.value">{{sld.name}}</option>
+  </select>
+
+  <h2>Количество пассажиров:</h2>
+
+  <div class="row  justify-content-md-center">
+    <div class="col col-lg-2 center">
+      <b class="bold">сидячих:</b>
+      <div class="range-slider">
+        <input class="range-slider__range" type="range" 
+            v-model="passagers" 
+            :min="1" :max="max_sit" step="1">
+        <span class="range-slider__value">{{passagers}}</span>
+      </div>
     </div>
-    
+    <div class="col col-lg-2x center" v-if="slider[selected].mesta.standup>0">
+      <b class="bold">стоячих:</b>
+      <div class="range-slider">
+        <input class="range-slider__range" type="range" 
+          v-model="passagers_stand" 
+          :min="0" :max="max_stand" step="1">
+        <span class="range-slider__value">{{passagers_stand}}</span>
+      </div>
+    </div>
   </div>
 
- <div v-if='selected==2'>
-  
-      
-  <p class="bold">Количество пассажиров:</p>
-  <div @click="passagersHandler" class="btn-group btn-group-md">
-       <button v-for="pas in pasdata" type="button" 
-          :class="{'btn-primary': pas.value==passagers}" 
-          class="btn btn-default" 
-          :value="pas.value">{{pas.text}}
-      </button>  
-  </div>  
+ </div>
+
+
    <div class="row">
-     <div class="col-6"> 
+    <div class="col-4">
       <b class="bold">Телефон</b>
-    <input class="form-control" type="tel" value="+79685555555"> 
-      </div>  
+      <input class="form-control" type="tel" placeholder="+79685555555" v-model="tel"> 
+    </div>
+    <div class="col-4">
+      <b>Откуда</b>
+      <input type="text" class="form-control" v-model="otkuda" placeholder="Откуда"> 
+    </div>
+    <div class="col-4">  
+      <b>Куда</b>
+      <input type="text" class="form-control" v-model="kuda" placeholder="Куда"> 
     </div> 
-   
   </div>
-
-
- <div v-if='selected==3'> 
-     
-     <div class="row">
-     <div class="col-12"> 
-      <b class="bold">Коллиечство мест - сидячих</b>
-
- 
-
-<div class="range-slider">
-  <input class="range-slider__range" type="range" value="250" min="0" max="500" step="50">
-  <span class="range-slider__value">0</span>
-</div>
-
-
-      </div>  
-    </div>   
-  <div class="row">
-     <div class="col-12"> 
-      <b class="bold">Коллиечство мест - стоячих</b>
-      <input class="form-control" type="text" value="1"> 
-      </div>  
-    </div>  
-   <div class="row">
-     <div class="col-6"> 
-      <b class="bold">Телефон</b>
-    <input class="form-control" type="tel" value="+79685555555"> 
-      </div>  
-    </div>  
-   
-  </div> 
-   
-  
-<div class="row">
-  <div class="col-6">
-    <b>Откуда</b>
-    <input type="text" class="form-control" placeholder="Откуда"> 
-  </div>
-  <div class="col-6">  
-    <b >Куда</b>
-    <input type="text" class="form-control" placeholder="Куда"> 
-  </div> 
-</div>
 </div>`,
     el: '#app',
     data: {
-        sex: 1,
-        pasdata: [{
-                text: 'один',
-                value: 1
-            },
-            {
-                text: 'два',
-                value: 2
-            },
-            {
-                text: 'три',
-                value: 3
-            },
-            {
-                text: 'четыре',
-                value: 4
-            },
-            {
-                text: 'пять',
-                value: 5
-            },
-            {
-                text: 'шесть',
-                value: 6
-            }
-        ],
-        passagers: 1,
-        selected: 1
+      slider: [
+        {
+          value: "0",
+          name: "BMW 5 SERIES",
+          mesta: {sitdown: 4, standup: 0} 
+        },
+        {
+          value: "1",
+          name: "Mercedes-Benz Viano",
+          mesta: {sitdown: 4, standup: 0} 
+        },
+        { 
+          value: "2",
+          name: "Hyundai County",
+          mesta: {sitdown: 15, standup: 20} 
+        } 
+      ],
+      kuda: '',
+      otkuda: '',
+      tel: '',
+      selected: 0,
+      passagers: 1,
+      passagers_stand: 0,
+      max_stand: 0,
+      max_sit: 4
     },
     methods: {
-        passagersHandler(e) {
-            this.passagers = e.target.value;
-        }
+      selectCarHandler(e){
+        this.max_stand  = this.slider[this.selected].mesta.standup;
+        this.max_sit    = this.slider[this.selected].mesta.sitdown
+        this.passagers = this.passagers>this.slider[this.selected].mesta.sitdown? this.slider[this.selected].mesta.sitdown:this.passagers;
+        this.passagers_stand = this.passagers>this.slider[this.selected].mesta.standup? this.slider[this.selected].mesta.standup:this.passagers_standup;
+      }
     }
-})
+  })
  
+  var mySlider = new Slider("input.slider", {
+    
+  });
