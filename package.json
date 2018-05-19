@@ -1,0 +1,26 @@
+{
+  "name": "vue-yandex-maps-dostavka",
+  "version": "1.0.0",
+  "description": "Расчет доставки с помощью апи яндекс карт и vue js\r <img src=\"https://pp.userapi.com/c824601/v824601177/13b25a/k7oly1RvhL4.jpg\"/>",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "vue-slider-component": "^2.6.2",
+    "vuetify": "^1.0.18"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "nod": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kostia7alania/vue-yandex-maps-api-dostavka.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kostia7alania/vue-yandex-maps-api-dostavka/issues"
+  },
+  "homepage": "https://github.com/kostia7alania/vue-yandex-maps-api-dostavka#readme"
+}
