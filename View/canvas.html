@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    
+</head>
+<body style="margin:0;">
+    s
+    <canvas style="display:block;" id="canvas">Ваш браузер не поддерживает canvas.</canvas>
+
+<script>
+    var canv = document.querySelector('#canvas');
+    var ctx = canv.getContext('2d');
+    var isdown = 0;
+    var coords = [];
+
+    canv.width = window.innerWidth;
+    canv.height = window.innerHeight;
+     
+canv.addEventListener('mousedown',function(){ isdown = 1; })
+canv.addEventListener('mouseup',function(){ isdown = 0; ctx.beginPath(); coords.push('mousesdaup')})
+ctx.lineWidth=10*2;
+     canv.addEventListener('mousemove', function(e){
+         if(isdown){
+             coords.push([e.clientX,e.clientY]);
+             ctx.lineTo(e.clientX, e.clientY);
+             ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(e.clientX,e.clientY, 10,0,Math.PI*2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY); 
+         }
+    })
+function save(){
+    localStorage.setItem('coords', JSON.stringify(coords));
+}
+ function clear(){
+     ctx.fillStyle='white';
+     ctx.fillRect(0,0,canv.width,canv.height);
+     ctx.beginPath();
+     ctx.fillStyle = "black";
+ }
+
+function replay(){
+    var timer = setInterval(function(){
+        if(!coords.length){
+            clearInterval(timer);
+            ctx.beginPath();
+            return;
+        }
+        var crd = coords.shift();
+        e = {
+                clientX: crd["0"],
+                clientY: crd["1"]
+            }
+
+            ctx.lineTo(e.clientX, e.clientY);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(e.clientX,e.clientY, 10,0,Math.PI*2);
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(e.clientX, e.clientY); 
+
+
+    }, 12)
+}
+
+document.addEventListener('keydown',function(e){ console.log(e.keyCode);
+ 
+    if(e.keyCode==83){ //save
+        save();console.log('saved!');
+    }
+
+    if(e.keyCode==82){ //replay
+        coords = JSON.parse(localStorage.getItem('coords'));
+        clear();
+        replay();
+
+        console.log('replayed');
+    }
+
+    if(e.keyCode==67){ //clear
+        clear();console.log('cleared')
+    }
+})
+
+
+</script>
+
+</body>
+</html>

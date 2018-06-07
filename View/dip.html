@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>test </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+ <style>
+   #d {
+ height: 438.5px;
+ width: 310px;
+  border: 1px solid black;
+}
+#d > div {
+ height: 438.5px;
+ width: 310px;
+max-height: 438.5px;
+ max-width: 310px;
+  overflow: hidden;
+  resize: both;
+  position: relative;
+}
+#d > div:after {
+ content: '👍';
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  pointer-events: none;
+  visibility: visible;
+  background-position: center;
+  background-size: cover; 
+ background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYFFBxboDAlvfkwh0DCR3dlr3oH9RPs4fSPySNFgDksyVRJrYv");
+    }
+</style>
+</head>
+<body>
+    <div id="d"><div></div></div>
+</body>
+</html>

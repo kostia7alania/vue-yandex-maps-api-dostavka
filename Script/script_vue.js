@@ -2,9 +2,7 @@ Vue.component('v-select', VueSelect.VueSelect)
    
 
 var v = new Vue({
-    template: `<div> 
-        
-
+  template: `<div>  
 <p class="bold"> Выберите транспорт !{{sex}}</p>  
 <select v-model="selected">
   <option selected value="1">BMW 5 SERIES</option>
@@ -86,52 +84,69 @@ var v = new Vue({
   </div> 
    
   
-<div class="row">
-  <div class="col-6">
-    <b>Откуда</b>
-    <input type="text" class="form-control" placeholder="Откуда"> 
+ 
+<div v-if="distance_val"  class="row">
+  <div class="col-12">
+    <p ><b>Дистанция: </b> {{distance_text}}  ({{distance_val}}) метров</p>
+    <p><b>Время с учетом текущих пробок:</b> {{durationInTraffic_text}} ({{durationInTraffic_val}} сек)</p>
+    <p><b>Время в среднем:</b> {{duration_text}} ({{duration_val}} сек)</p>
   </div>
-  <div class="col-6">  
-    <b >Куда</b>
-    <input type="text" class="form-control" placeholder="Куда"> 
+  <div class="col-12">
+  <p><b>Куда:</b> {{firstGeoObject}} </p>
+  <p><b>Откуда:</b> {{secontGeoObject}}</p>
+  <a target="_blank" :href="'https://yandex.ru/maps?mode=routes&rtext='+x1+'%2C'+y1+'~'+x2+'%2C'+y2">Посмотреть на яндексе</a>
+  <p><b>Стоимость:</b> {{price}} руб.</p>
   </div> 
 </div>
+
 </div>`,
-    el: '#app',
-    data: {
-        sex: 1,
-        pasdata: [{
-                text: 'один',
-                value: 1
-            },
-            {
-                text: 'два',
-                value: 2
-            },
-            {
-                text: 'три',
-                value: 3
-            },
-            {
-                text: 'четыре',
-                value: 4
-            },
-            {
-                text: 'пять',
-                value: 5
-            },
-            {
-                text: 'шесть',
-                value: 6
-            }
-        ],
-        passagers: 1,
-        selected: 1
+//'https://www.google.ru/maps/dir/55.785353,37.7515204/55.7723293,37.7573029"
+  el: "#app",
+  data: {
+    sex: 1,
+    pasdata: [
+      {
+        text: "один",
+        value: 1
+      },
+      {
+        text: "два",
+        value: 2
+      },
+      {
+        text: "три",
+        value: 3
+      },
+      {
+        text: "четыре",
+        value: 4
+      },
+      {
+        text: "пять",
+        value: 5
+      },
+      {
+        text: "шесть",
+        value: 6
+      }
+    ], 
+    price:0,
+    passagers: 1,
+    selected: 1,
+    distance_val: '',
+    durationInTraffic_val: '',
+    duration_val:'',
+    distance_text: '',
+    durationInTraffic_text: '',
+    duration_text:'',
+    x1:'',y1:'',x2:'',y2:'',
+    firstGeoObject:'',
+    secontGeoObject:''
     },
-    methods: {
-        passagersHandler(e) {
-            this.passagers = e.target.value;
-        }
+  methods: {
+    passagersHandler(e) {
+      this.passagers = e.target.value;
     }
-})
+  }
+});
  

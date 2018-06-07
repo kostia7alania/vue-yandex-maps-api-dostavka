@@ -1,0 +1,124 @@
+#topmenu {
+    width: 100%;
+}
+
+#topmenu ul {
+    float: left;
+    padding-left: 0;
+}
+
+#topmenu ul li {
+    float: left;
+    list-style-type: none;
+    background-color: #ddd;
+    border-top: 1px solid #999;
+    border-bottom: 1px solid #000;
+    margin-right: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#topmenu ul li a {
+    text-decoration: none;
+}
+
+#topmenu ul li span.fr,
+div#tabs ul li span.fr {
+    color: #000;
+}
+
+#topmenu ul li span.en,
+div#tabs ul li span.en {
+    display: block;
+    color: #666;
+    font-size: 10px;
+    font-style: italic;
+}
+
+pre.code {
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    background-color: #fff;
+}
+
+.ui-accordion-header {
+    height: 30px;
+}
+
+.ui-accordion-header span.title {
+    float: left;
+    width: 35%;
+    font-size: 12px;
+}
+
+.ui-accordion-header dl {
+    float: right;
+    width: 65%;
+    font-size: 12px;
+    margin: 8px 0 0;
+}
+
+.ui-accordion-header dl dd,
+.ui-accordion-header dl dt {
+    float: left;
+}
+
+dt.type {
+    color: #000;
+}
+
+dd.type {
+    color: #333;
+    margin-left: 5px;
+    width: 100px;
+}
+
+dt.default {
+    color: #000;
+    margin-left: 50px;
+}
+
+dd.default {
+    color: #333;
+    margin-left: 5px;
+}
+
+table.lngtbl {
+    width: 100%;
+}
+
+table.lngtbl td {
+    vertical-align: top;
+}
+
+table.lngtbl td {
+    font-size: 14px;
+}
+
+table.lngtbl td p {
+    margin-top: 0;
+}
+
+th.en {
+    background-image: url('../img/flag_en.gif');
+    background-repeat: no-repeat;
+    text-transform: capitalize;
+    font-size: 12px;
+    text-shadow: 0 0 0.1em #000;
+    color: #fff;
+    width: 60px;
+    vertical-align: top;
+    padding-top: 40px;
+}
+
+th.fr {
+    background-image: url('../img/flag_fr.gif');
+    background-repeat: no-repeat;
+    text-transform: capitalize;
+    font-size: 12px;
+    text-shadow: 0 0 0.1em #000;
+    color: #fff;
+    width: 60px;
+    vertical-align: top;
+    padding-top: 40px;
+}
