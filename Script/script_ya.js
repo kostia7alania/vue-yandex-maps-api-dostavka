@@ -12,7 +12,7 @@ function init() {
         });
         // Создадим панель маршрутизации.
         var routePanelControl = new ymaps.control.RoutePanel({ options: { // Добавим заголовок панели.
-                showHeader: true,title: 'Расчёт доставки'} 
+                showHeader: true,title: 'Расчёт дистанции'}
             }),
         zoomControl = new ymaps.control.ZoomControl({ options: {size: 'small',float: 'none',position: { bottom: 145, right: 10 } } });
     // Пользователь сможет построить только автомобильный маршрут.
@@ -56,21 +56,21 @@ function init() {
                 v.durationInTraffic_val = rtedata.durationInTraffic.value;
 
                 //getAddress([55.753994, 37.622093])
-  
+
                 var length = route.getActiveRoute().properties.get("distance");
                     // Вычислим стоимость доставки.
                 var price = calculate(Math.round(length.value / 1000));
-                v._data.price = price;
+                //v._data.price = price;
                     // Создадим макет содержимого балуна маршрута.
                 var balloonContentLayout = ymaps.templateLayoutFactory.createClass(
                         '<span>Расстояние: ' + length.text + '.</span><br/>' +
-                        '<span style="font-weight: bold; font-style: italic">Стоимость доставки: ' + price + ' р.</span>');
+                        '<span style="font-weight: bold; font-style: italic">Стоимость: ' + price + ' р.</span>');
                 // Зададим этот макет для содержимого балуна.
                 route.options.set('routeBalloonContentLayout', balloonContentLayout);
                 // Откроем балун.
-                activeRoute.balloon.open();
+                //activeRoute.balloon.open();
 
-
+                v.calculate_cost();
                 getAddress([x1, y1]);
                 getAddress([x2, y2]);
             }
@@ -79,19 +79,22 @@ function init() {
     });
     // Функция, вычисляющая стоимость доставки.
     function calculate(routeLength) {
-        console.log(routeLength); 
+        console.log(routeLength);
         return Math.max(routeLength * DELIVERY_TARIFF, MINIMUM_COST);
-        
+
     }
 }
 
 
 
     function getAddress(coords) {
-         
+
             ymaps.geocode(coords).then(function (res) {
                 firstGeoObject = v._data.firstGeoObject = res.geoObjects.get(0).properties._data.text;
                 secontGeoObject = v._data.secontGeoObject = res.geoObjects.get(1).properties._data.text;
+                          v._data.firstGeoObject = document.querySelectorAll('.ymaps-2-1-64-route-panel-input__input')[0].value
+                          v._data.secontGeoObject = document.querySelectorAll('.ymaps-2-1-64-route-panel-input__input')[1].value
+
                 console.col('firstGeoObject=>', firstGeoObject, 'secontGeoObject=>', secontGeoObject);
             });
 

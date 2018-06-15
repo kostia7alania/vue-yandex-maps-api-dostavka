@@ -4,7 +4,7 @@
 <head>
     <title>Примеры. Расчет стоимости доставки yandex maps + vue.js</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui"> 
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
 
 <link rel="stylesheet" href="./style.css">
@@ -24,39 +24,15 @@
 </head>
 
 <body>
- 
+
 
     <div>
+
+
         <div id="app"></div>
-        <div id="map"> </div> 
- 
-<div id="simpleApp">
-    <v-app>
-        <v-content>
-            <v-container>
-                <v-layout row>
-                    <div>
-                        <v-btn v-on:click="showAlert=true" color="primary">Primary</v-btn>
-                    </div>
-                    <div>
-                        <v-btn v-on:click="showAlert=false" color="error">Error</v-btn>
-                    </div>
-                    <div>
-                        <v-btn light disabled>Disabled</v-btn>
-                    </div>
-                </v-layout>
-            </v-container>
-            <v-container>
-                <v-alert v-show="showAlert" color="success" icon="check_circle" value="true">
-                    This is a success alert.
-                </v-alert>
-            </v-container>
-        </v-content>
-    </v-app>
-    <pre>
-			{{ $data }}
-		</pre>
-</div>
+        <div id="map"> </div>
+
+
 
 
 
@@ -65,16 +41,73 @@
 <script src="https://unpkg.com/vue@latest"></script>
 <script src="https://unpkg.com/vue-select@latest"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/v-mask/dist/v-mask.min.js"></script>
 <script src="./script_vue.js"></script>
 <script src="./script_ya.js"></script>
 
-<script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>
+<style> select:hover{cursor:pointer} select {border: 1px dashed black;} </style>
 
- 
-<script>
-new Vue( { el: '#simpleApp', data: { showAlert: false } } );
-</script>
- </body>
+<style>
+  input.ymaps-2-1-64-route-panel-input__input {
+    color: black;
+}
+  .center {
+    text-align: center
+  }
+
+  input[type=range] {
+    -webkit-appearance: none;
+    /* Override default CSS styles */
+    appearance: none;
+    height: 25px;
+    /* Specified height */
+    background: #d3d3d3;
+    /* Grey background */
+    outline: none;
+    /* Remove outline */
+    opacity: 0.7;
+    /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s;
+    /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+  }
+
+  /* Mouse-over effects */
+
+  input[type=range]:hover {
+    opacity: 1;
+    /* Fully shown on mouse-over */
+  }
+
+  /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    /* Override default look */
+    appearance: none;
+    width: 25px;
+    /* Set a specific slider handle width */
+    height: 25px;
+    /* Slider handle height */
+    background: #4CAF50;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+  }
+
+  input[type=range]::-moz-range-thumb {
+    width: 25px;
+    /* Set a specific slider handle width */
+    height: 25px;
+    /* Slider handle height */
+    background: #4CAF50;
+    /* Green background */
+    cursor: pointer;
+    /* Cursor on hover */
+  }
+</style>
+
+</body>
 
 
 </html>
